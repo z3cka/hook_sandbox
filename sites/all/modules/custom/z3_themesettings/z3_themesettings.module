@@ -1,0 +1,28 @@
+<?php
+/**
+ * Created by Casey Grzecka in PhpStorm.
+ * User: z3cka
+ * Date: 11/8/11
+ * Time: 12:44 PM
+ * The main idea of this module is to set the theme settings via a custom module.
+ */
+
+/**
+ * Implementation of hook_form_alter()
+ */
+function z3_themesettings_form_alter(&$form, $form_state, $form_id) {
+//  drupal_set_message("Form ID is : " . $form_id);
+  switch ($form_id) {
+    case 'system_theme_settings':
+      // Mods here for the form
+      $form['logo']['default_logo']['#default_value'] = 0;
+			$form['theme_settings']['toggle_logo']['#default_value'] = 0;
+      // Let's actually set the variable thus overriding the form :-P
+			$themesettings = variable_get('theme_omega_hook_sandbox_settings', $default);
+			$themesettings['toggle_logo'] = 0;
+			variable_set('theme_omega_hook_sandbox_settings', $themesettings);
+      break;
+  }
+}
+
+

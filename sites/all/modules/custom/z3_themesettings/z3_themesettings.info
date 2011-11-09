@@ -1,0 +1,4 @@
+name = Theme Settings
+description = "Set theme settings."
+package = Adminustration
+core = 6.x
