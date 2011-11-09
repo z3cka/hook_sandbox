@@ -1,0 +1,61 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: z3cka
+ * Date: 11/9/11
+ * Time: 9:32 AM
+ * This module is to practice using hook_block and more specifically providing a block that has it's own template.
+ */
+ 
+/**
+ * Implementation of hook_block()
+ */
+function z3_hookblock_block($op='list', $delta=0, $edit=array()) {
+  switch ($op) {
+    case 'list':
+      $blocks['header-block'] = array(
+        'info' => t('Header Block'),
+      );
+      return $blocks;
+    case 'view':
+      switch ($delta) {
+        case 'header-block':
+          $block = array(
+            'subject' => t('Header Block'),
+//						'content' => theme('block_z3_hookblock_header_block'),
+            'content' => z3_hookblock_headerBlockContent(),
+//						'content' => "Hello, i'm custom block content.",
+          );
+					break;
+      }
+			return $block;
+    case 'configure':
+
+    case 'save':
+
+  }
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function z3_hookblock_theme() {
+  return array(
+    'block_z3_hookblock_header_block' => array(
+			// define what template to use
+      'template'  => 'block-z3_hookblock-header-block',
+      'arguments' => array('section' => NULL),
+    )
+  );
+}
+
+
+/**
+ * I think these are call helper functions (or maybe they are callback functions... not sure :-P)
+ */
+function z3_hookblock_headerBlockContent() {
+  // Block content here
+	// We can use a variable(s) to pass data to the template
+	$section = "i'm some data from \$section var";
+	return theme('block_z3_hookblock_header_block', $section);
+}

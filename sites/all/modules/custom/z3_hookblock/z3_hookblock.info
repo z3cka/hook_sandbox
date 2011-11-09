@@ -1,0 +1,4 @@
+name = Hook Blocks
+description = "Some custom blocks in code."
+package = Administration
+core = 6.x
