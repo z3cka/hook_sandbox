@@ -1,4 +1,4 @@
 name = Theme Settings
 description = "Set theme settings."
-package = Adminustration
+package = Administration
 core = 6.x
