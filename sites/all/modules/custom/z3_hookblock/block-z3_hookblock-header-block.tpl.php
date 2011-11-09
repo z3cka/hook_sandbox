@@ -11,7 +11,6 @@
  * @see template_preprocess()
  * @see template_preprocess_block()
  */
-dsm(get_defined_vars());
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
 <?php if ($block->subject): ?>
